@@ -6,15 +6,17 @@ import OpenAI from "openai";
 dotenv.config();
 const app = express();
 const allowedOrigins = [
-  "https://be-ecopulse.onrender.com/", // 🔹 Reemplaza con tu dominio real
+  "https://fe-eco-pulse.vercel.app", // 🔹 Reemplaza con tu dominio real
   "http://localhost:5173",          // 🔹 Para desarrollo local
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin) return callback(null, true); // permite postman / pruebas directas
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.warn(`❌ CORS bloqueado para origen: ${origin}`);
       callback(new Error("No permitido por CORS"));
     }
   },
