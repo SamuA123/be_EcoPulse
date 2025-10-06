@@ -5,7 +5,23 @@ import OpenAI from "openai";
 
 dotenv.config();
 const app = express();
-app.use(cors());
+const allowedOrigins = [
+  "https://be-ecopulse.onrender.com/", // 🔹 Reemplaza con tu dominio real
+  "http://localhost:5173",          // 🔹 Para desarrollo local
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("No permitido por CORS"));
+    }
+  },
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+}));
+
 app.use(express.json());
 
 const client = new OpenAI({
@@ -65,6 +81,11 @@ Estructura tu respuesta de forma clara y legible.`
       temperature: 0.7,
       max_tokens: 1000,
     });
+
+res.setHeader("Content-Type", "text/event-stream");
+res.setHeader("Cache-Control", "no-cache, no-transform");
+res.setHeader("Connection", "keep-alive");
+res.flushHeaders?.();
 
     for await (const chunk of stream) {
       const content = chunk.choices[0]?.delta?.content;
