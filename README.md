@@ -1,69 +1,69 @@
-🌱 EcoPulse API – Asistente de Sostenibilidad y Medio Ambiente
+🌱 EcoPulse API – Sustainability and Environmental Assistant
 
-Este proyecto es una API basada en Express.js que utiliza el modelo GPT-4o-mini de OpenAI para proporcionar respuestas educativas y estructuradas sobre sostenibilidad, medio ambiente, energías renovables, reciclaje y más.
+This project is an Express.js-based API that uses OpenAI’s GPT-4o-mini model to provide educational and structured answers about sustainability, the environment, renewable energy, recycling, and more.
 
-La API incluye un endpoint de streaming SSE (Server-Sent Events) que permite recibir las respuestas del modelo de forma continua, ideal para integraciones en tiempo real con interfaces de chat.
+It includes a streaming SSE (Server-Sent Events) endpoint that allows real-time message responses, making it ideal for chat-style interfaces.
 
-🚀 Características principales
+🚀 Main Features
 
-✅ Servidor Express con CORS y JSON habilitados.
+✅ Express server with CORS and JSON enabled
 
-🔐 Variables de entorno gestionadas con dotenv.
+🔐 Environment variable management with dotenv
 
-💬 Endpoint /chat con historial de conversación incluido.
+💬 /chat endpoint with conversation history support
 
-⚡ Streaming de respuestas del modelo mediante Server-Sent Events (SSE).
+⚡ Streaming responses via Server-Sent Events (SSE)
 
-🧠 Rol del asistente definido como experto en sostenibilidad y medio ambiente.
+🧠 AI assistant defined as an expert in sustainability and environment
 
-🪶 Formato de respuestas claro, educativo y estructurado.
+🪶 Clear, educational, and well-formatted responses
 
-🛠️ Tecnologías utilizadas
-Tecnología	Descripción
-Node.js	Entorno de ejecución para JavaScript del lado del servidor
-Express.js	Framework minimalista para construir APIs
-OpenAI API	Motor de inteligencia artificial para generar respuestas
-dotenv	Gestión de variables de entorno
-CORS	Middleware para habilitar solicitudes desde otros orígenes
-📦 Instalación y configuración
-1. Clonar el repositorio
-git clone https://github.com/tuusuario/ecopulse-api.git
+🛠️ Technologies Used
+Technology	Description
+Node.js	JavaScript runtime for backend development
+Express.js	Minimal web framework for building APIs
+OpenAI API	AI model to generate responses
+dotenv	Loads environment variables
+CORS	Middleware to allow cross-origin requests
+📦 Installation and Setup
+1. Clone the repository
+git clone https://github.com/yourusername/ecopulse-api.git
 cd ecopulse-api
 
-2. Instalar dependencias
+2. Install dependencies
 npm install
 
-3. Configurar variables de entorno
+3. Configure environment variables
 
-Crea un archivo .env en la raíz del proyecto con el siguiente contenido:
+Create a .env file in the project root and add:
 
-OPENAI_API_KEY=tu_clave_de_openai_aqui
+OPENAI_API_KEY=your_openai_api_key_here
 PORT=5000
 
 
-🔑 Puedes obtener tu clave de API desde https://platform.openai.com/account/api-keys
+🔑 You can get your OpenAI API key from https://platform.openai.com/account/api-keys
 
-▶️ Ejecución del servidor
+▶️ Run the Server
 
-Inicia el servidor con:
+Start the server with:
 
 npm start
 
 
-O, si usas nodemon para desarrollo:
+Or, if you’re using nodemon for development:
 
 npx nodemon index.js
 
 
-Luego abre en tu navegador:
+Then open your browser at:
 👉 http://localhost:5000
 
-Deberías ver el mensaje:
+You should see:
 
-Servidor funcionando 🚀
+Server running 🚀
 
-💬 Endpoint principal: /chat
-Método: POST
+💬 Main Endpoint: /chat
+Method: POST
 URL: http://localhost:5000/chat
 Headers:
 {
@@ -72,93 +72,93 @@ Headers:
 
 Body (JSON):
 {
-  "message": "¿Qué son las energías renovables?",
+  "message": "What are renewable energies?",
   "history": [
-    { "role": "user", "content": "Explícame sobre reciclaje." },
-    { "role": "assistant", "content": "El reciclaje consiste en..." }
+    { "role": "user", "content": "Explain recycling to me." },
+    { "role": "assistant", "content": "Recycling means..." }
   ]
 }
 
-Descripción de parámetros
-Campo	Tipo	Requerido	Descripción
-message	string	✅	Mensaje actual del usuario
-history	array	❌	Historial de conversación (últimos mensajes)
-📡 Formato de respuesta (Streaming SSE)
+Parameters
+Field	Type	Required	Description
+message	string	✅	The user’s current message
+history	array	❌	Previous conversation messages (optional)
+📡 Streaming Response Format (SSE)
 
-El servidor envía los datos en formato Server-Sent Events (SSE), permitiendo que el cliente reciba texto progresivamente mientras el modelo responde.
+The server sends data using Server-Sent Events (SSE), allowing clients to receive responses progressively as the AI generates them.
 
-Ejemplo de datos recibidos:
+Example response stream:
 
-data: Hola, te contaré sobre las energías renovables...\n\n
-data: Estas incluyen la solar, eólica, hidráulica...\n\n
+data: Hello! Let’s talk about renewable energies...\n\n
+data: These include solar, wind, and hydro power...\n\n
 data: [DONE]
 
 
-Cuando se recibe data: [DONE], significa que la transmisión ha finalizado.
+When data: [DONE] is received, the stream is complete.
 
-🧩 Estructura del proyecto
+🧩 Project Structure
 📂 ecopulse-api
- ├── 📄 index.js          # Código principal del servidor
- ├── 📄 package.json      # Configuración del proyecto
- ├── 📄 .env              # Variables de entorno (no se sube al repositorio)
- ├── 📄 .gitignore        # Archivos ignorados por git
- └── 📄 README.md         # Documentación del proyecto
+ ├── 📄 index.js          # Main server file
+ ├── 📄 package.json      # Project configuration
+ ├── 📄 .env              # Environment variables (not committed)
+ ├── 📄 .gitignore        # Ignored files
+ └── 📄 README.md         # Project documentation
 
-🌍 Comportamiento del asistente
+🌍 Assistant Behavior
 
-El asistente EcoPulse tiene el siguiente rol del sistema configurado:
+The assistant EcoPulse has the following system prompt:
 
-“Eres un asistente experto en sostenibilidad y medio ambiente llamado EcoPulse.
-Proporciona respuestas detalladas, estructuradas y educativas sobre temas como:
+“You are an expert assistant on sustainability and the environment named EcoPulse.
+Provide detailed, structured, and educational answers on topics such as:
 
-Sostenibilidad y medio ambiente
+Sustainability and environmental protection
 
-Cambio climático y energías renovables
+Climate change and renewable energy
 
-Economía circular y reciclaje
+Circular economy and recycling
 
-Conservación de recursos naturales
+Natural resource conservation
 
-Prácticas ecológicas
+Eco-friendly lifestyle practices
 
-Usa un tono amigable pero profesional y presenta tus respuestas con claridad.”
+Use a friendly but professional tone and ensure clarity in your explanations.”
 
-🧠 Ejemplo de respuesta del modelo
+🧠 Example AI Response
 
-Entrada:
+Input:
 
 {
-  "message": "¿Qué puedo hacer para reducir mi huella de carbono?"
+  "message": "What can I do to reduce my carbon footprint?"
 }
 
 
-Respuesta (streaming):
+Streaming Output:
 
-data: 🌍 Reducir tu huella de carbono es una excelente meta.\n\n
-data: Aquí tienes algunas prácticas útiles:\n
-data: 1. Usa transporte público o bicicleta.\n
-data: 2. Reduce el consumo de energía en casa.\n
-data: 3. Opta por productos locales y reutilizables.\n\n
+data: 🌍 Reducing your carbon footprint is a great goal.\n\n
+data: Here are some practical tips:\n
+data: 1. Use public transport or ride a bike.\n
+data: 2. Lower your home energy consumption.\n
+data: 3. Choose local and reusable products.\n\n
 data: [DONE]
 
-⚠️ Manejo de errores
+⚠️ Error Handling
 
-Si falta el campo message en el body, se devuelve:
+If the message field is missing:
 
-{ "error": "Falta el mensaje en la petición." }
+{ "error": "The 'message' field is required." }
 
 
-Si ocurre un error con OpenAI, se envía por streaming:
+If an error occurs with the OpenAI API, the SSE will return:
 
-data: Error: <mensaje del error>
+data: Error: <error message>
 data: [DONE]
 
-📜 Licencia
+📜 License
 
-Este proyecto está bajo la licencia MIT.
-Puedes usarlo, modificarlo y distribuirlo libremente, siempre dando el crédito correspondiente.
+This project is licensed under the MIT License.
+You are free to use, modify, and distribute it as long as credit is given to the original author.
 
-💚 Autor
+💚 Author
 
-Desarrollado por [Tu Nombre o Equipo de Desarrollo]
-🌐 Proyecto: EcoPulse – Educación y sostenibilidad impulsada por IA
+Developed by Supernova Sparks
+🌐 Project: EcoPulse – Education and Sustainability powered by AI
